@@ -71,6 +71,20 @@ source(paste0(proj.path,"/Code/Functions/HelperFunctions/miscFunctions.R"))
 
 ```
 
+```{r plot-saving}
+
+# Create main directory if it doesn't exist
+fig_dir <- file.path(proj.path, "Manuscript/Main_Figures")
+if (!dir.exists(fig_dir)) dir.create(fig_dir, recursive = TRUE)
+
+# Create separate directories for PNG and PDF files
+png_dir <- file.path(fig_dir, "PNG")
+pdf_dir <- file.path(fig_dir, "PDF")
+if (!dir.exists(png_dir)) dir.create(png_dir, recursive = TRUE)
+if (!dir.exists(pdf_dir)) dir.create(pdf_dir, recursive = TRUE)
+
+```
+
 ## Overview
 
 ### Publication Information
@@ -100,7 +114,7 @@ knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/Fig1.png"))
 ### Fig. 2) Water temperature shapes gut microbiome structure {.tabset}
 
 
-**Fig. 2** Effects of water temperature on zebrafish gut microbiomes. (A) Simpson’s Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between fish reared at different water temperatures. (C) Simpson’s Index of diversity shows microbial gut diversity increases with time from 0 days post exposure (dpe) to 42 dpe, irrespective of water temperature. (D) Capscale ordination of gut microbiome composition based on the Bray-Curtis dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate direction of greatest change in the indicated by covariates.
+**Fig. 2** Effects of water temperature on zebrafish gut microbiomes. (A) Simpson's Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between fish reared at different water temperatures. (C) Simpson's Index of diversity shows microbial gut diversity increases with time from 0 days post exposure (dpe) to 42 dpe, irrespective of water temperature. (D) Capscale ordination of gut microbiome composition based on the Bray-Curtis dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate direction of greatest change in the indicated by covariates.
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -120,9 +134,22 @@ tmp.variables <- "TEMP"
 
 ```{r plots-2A, echo=FALSE, fig.height=6.5, fig.width=6.5, message=FALSE, warning=FALSE}
 
-alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]] +
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]] +
   theme(legend.position = "none") +
   labs(title = NULL)
+
+# Display the plot
+p
+
+# Extract figure number from chunk name
+fig_name <- "Fig_2A"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -191,7 +218,20 @@ tmp.variables <- "TEMP"
 
 ```{r plots-2B, echo=FALSE, fig.height=6.5, fig.width=6.5, message=FALSE, warning=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+# Extract figure number from chunk name
+fig_name <- "Fig_2B"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -259,7 +299,22 @@ tmp.variables <- "TEMP:DPE"
 
 ```{r plots-2C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_2C"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -327,7 +382,22 @@ tmp.variables <- "TEMP:DPE"
 
 ```{r plots-2D, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_2D"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -454,7 +524,7 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 ### Fig. 3) Infection burden is highest in fish reared at lower water temperatures  {.tabset}
 
 
-**Fig. 3** Infection outcomes in zebrafish exposed to Pseudocapillaria tomentosa. (A) Histological sections stained with ### stain in zebrafish exposed to P. tomentosa examined at ### days post exposure. Nematodes in intestinal lumen. Arrow = ###. (B) Infection outcome analysis of fish exposed to P. tomentosa (n = 89) by temperature. Fish reared at 28°C and 32°C water temperatures had significantly different infection burden to fish reared at 35°C water temperature. Only one fish reared at 35°C was identified as being positively infected by wet mount. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level.
+**Fig. 3** Infection outcomes in zebrafish exposed to Pseudocapillaria tomentosa. (A) Histological sections stained with ### stain in zebrafish exposed to P. tomentosa examined at ### days post exposure. Nematodes in intestinal lumen. Arrow = ###. (B) Infection outcome analysis of fish exposed to P. tomentosa (n = 89) by temperature. Fish reared at 28°C and 32°C water temperatures had significantly different infection burden to fish reared at 35°C water temperature. Only one fish reared at 35°C was identified as being positively infected by wet mount. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level.
 
 
 #### 3A)
@@ -476,9 +546,24 @@ tmp.variables <- "TEMP"
 
 ```{r plots-3B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot"]] + 
+# Store the plot in a temporary variable for saving
+p <- worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot"]] + 
   theme(legend.position = "none") +
   labs(title = NULL)
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_3B"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -723,7 +808,7 @@ worm.stats[[tmp.subset]][["Method.Counts"]][["Method_Comparison_Stats"]]
 
 ### Fig. 4) Gut microbiome response to parasite exposure varies across water temperature {.tabset}
 
-**Fig. 4** Effects of Pseudocapillaria tomentosa exposure on zebrafish gut microbiomes reared at different water temperatures. (A) Simpson’s Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C water temperature to fish reared at 32°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between parasite exposed fish reared at different water temperatures. (C) Simpson’s Index of diversity shows microbial gut diversity decreases with time from 0 days post exposure (dpe) to 42 dpe in parasite exposed fish reared at 28°C water temperature. (D) Capscale ordination of gut microbiome composition based on the Canberra dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between parasite exposed fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate direction of greatest change in the indicated covariates.
+**Fig. 4** Effects of Pseudocapillaria tomentosa exposure on zebrafish gut microbiomes reared at different water temperatures. (A) Simpson's Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C water temperature to fish reared at 32°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between parasite exposed fish reared at different water temperatures. (C) Simpson's Index of diversity shows microbial gut diversity decreases with time from 0 days post exposure (dpe) to 42 dpe in parasite exposed fish reared at 28°C water temperature. (D) Capscale ordination of gut microbiome composition based on the Canberra dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between parasite exposed fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate direction of greatest change in the indicated covariates.
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -743,9 +828,24 @@ tmp.variables <- "TEMP"
 
 ```{r plots-4A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]] +
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]] +
   theme(legend.position = "none") +
   labs(title = NULL)
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_4A"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -812,7 +912,22 @@ tmp.variables <- "TEMP"
 
 ```{r plots-4B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_4B"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -879,9 +994,22 @@ tmp.variables <- "TEMP:DPE"
 
 ```{r plots-4C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]] +
-  theme(legend.position = "none") +
-  labs(title = NULL)
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_4C"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -948,7 +1076,22 @@ tmp.variables <- "TEMP:DPE"
 
 ```{r plots-4D, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_4D"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1075,7 +1218,7 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 
 ### Fig. 5) Gut microbiome response has a non-linear relationship with infection burden {.tabset}
 
-**Fig. 5** The impacts of presence of infection and infection burden on the gut microbiomes of Pseudocapillaria tomentosa exposed zebrafish. (A) Simpson’s Index for diversity of parasite exposed fish. Gut microbial alpha-diversity does not significantly differ between fish reared at the same water temperature depending on presence of infection. (B) Capscale ordination based on the Canberra dissimilarity of gut microbiome composition of parasite exposed fish constrained on the main effects of temperature and pathology result. The analysis shows that gut microbiome composition significantly differs between positively infected fish reared at different water temperatures. (C) Infection burden (total worm counts ) is positively correlated with lowest or highest alpha diversity scores in positively infected fish. (D) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effects of water temperature and infection burden. The analysis shows that gut microbiome composition significantly differs between clusters of Low, High and Other fish. Samples points are colored by water temperature, and filled by cluster grouping. Samples with at least one detectable worm and an alpha-diversity score less than 0.5 are categorized as Low (orange fill), samples with at least one detectable worm and an alpha-diversity score greater than 0.5 are categorized as High (purple fill), and samples with no observable infection are categorized as Other (white and transparent fill). Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate statistically significant covariates and direction of greatest change in the indicated covariates.
+**Fig. 5** The impacts of presence of infection and infection burden on the gut microbiomes of Pseudocapillaria tomentosa exposed zebrafish. (A) Simpson's Index for diversity of parasite exposed fish. Gut microbial alpha-diversity does not significantly differ between fish reared at the same water temperature depending on presence of infection. (B) Capscale ordination based on the Canberra dissimilarity of gut microbiome composition of parasite exposed fish constrained on the main effects of temperature and pathology result. The analysis shows that gut microbiome composition significantly differs between positively infected fish reared at different water temperatures. (C) Infection burden (total worm counts ) is positively correlated with lowest or highest alpha diversity scores in positively infected fish. (D) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effects of water temperature and infection burden. The analysis shows that gut microbiome composition significantly differs between clusters of Low, High and Other fish. Samples points are colored by water temperature, and filled by cluster grouping. Samples with at least one detectable worm and an alpha-diversity score less than 0.5 are categorized as Low (orange fill), samples with at least one detectable worm and an alpha-diversity score greater than 0.5 are categorized as High (purple fill), and samples with no observable infection are categorized as Other (white and transparent fill). Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate statistically significant covariates and direction of greatest change in the indicated covariates.
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -1089,7 +1232,22 @@ tmp.variables <- "TEMP:PATH"
 
 ```{r plots-5A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[[tmp.subset]][["TEMP:PATH"]][["TUKEY"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][["TEMP:PATH"]][["TUKEY"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_5A"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1150,7 +1308,22 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
 
 ```{r plots-5B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[[tmp.subset]][["TEMP:PATH"]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][["TEMP:PATH"]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_5B"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1217,7 +1390,22 @@ tmp.variables <- "TEMP:CLUSTER"
 
 ```{r plots-5C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[[tmp.subset]][["TEMP:CLUSTER"]][["Cluster"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[[tmp.subset]][["TEMP:CLUSTER"]][["Cluster"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_5C"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1285,7 +1473,22 @@ tmp.variables <- "TEMP:CLUSTER"
 
 ```{r plots-5D, fig.height=6.5, fig.width=6.5, message=FALSE, warning=FALSE, echo=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_5D"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1428,7 +1631,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
       # Title/caption
       gt::tab_header(
         title = "ANOVA: Homogeneity of Dispersion",
-        subtitle = "ANOVA(Beta Disperson ~ Cluster); Exposed fish"
+        subtitle = "ANOVA(Beta Dispersion ~ Cluster); Exposed fish"
         )
 
 ```
@@ -1457,7 +1660,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
       # Title/caption
       gt::tab_header(
         title = "ANOVA: Homogeneity of Dispersion",
-        subtitle = "ANOVA(Beta Disperson ~ Cluster); Exposed fish"
+        subtitle = "ANOVA(Beta Dispersion ~ Cluster); Exposed fish"
         )
 
 ```
@@ -1485,7 +1688,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
       # Title/caption
       gt::tab_header(
         title = "ANOVA: Homogeneity of Dispersion",
-        subtitle = "ANOVA(Beta Disperson ~ Cluster); Exposed fish"
+        subtitle = "ANOVA(Beta Dispersion ~ Cluster); Exposed fish"
         )
 
 ```
@@ -1513,7 +1716,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
       # Title/caption
       gt::tab_header(
         title = "ANOVA: Homogeneity of Dispersion",
-        subtitle = "ANOVA(Beta Disperson ~ Cluster); Exposed fish"
+        subtitle = "ANOVA(Beta Dispersion ~ Cluster); Exposed fish"
         )
 
 ```
@@ -1571,7 +1774,7 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["Counts_Temp.Cluster"]] %>%
 ### Fig. 6) Parasite exposure exacerbates water temperature differences in gut microbiome structure {.tabset}
 
 
-**Fig. 6** Comparison of the effects of water temperature on the gut microbiome between parasite exposed fish and parasite unexposed fish. (A) Simpson’s Index for diversity of parasite unexposed and pre-exposed fish at 0 days post exposure (dpe). Prior to parasite exposure gut microbial alpha-diversity does not significantly differ between fish reared at the same water temperature. (B)  Simpson’s Index for diversity of parasite unexposed and exposed fish. Gut microbial alpha-diversity significantly differs between parasite exposed fish reared at 28°C and 32°C water temperature relative to unexposed control fish, but gut microbial alpha-diversity does not differ between parasite unexposed and exposed fish reared at 35°C water temperature. Capscale ordinations based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main and interaction effects of temperature and parasite exposure (treatment) (C) of pre-exposure samples at 0 dpe, and  (D) post-exposure samples after 0 dpe. The analysis shows gut microbiome composition differs between fish reared at different water temperatures prior to parasite exposure, and parasite exposure further drives these temperature associated differences in microbiome community composition. Ribbons and ellipses indicate 95% confidence interval. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate statistically significant covariates and direction of greatest change in the indicated covariates.
+**Fig. 6** Comparison of the effects of water temperature on the gut microbiome between parasite exposed fish and parasite unexposed fish. (A) Simpson's Index for diversity of parasite unexposed and pre-exposed fish at 0 days post exposure (dpe). Prior to parasite exposure gut microbial alpha-diversity does not significantly differ between fish reared at the same water temperature. (B)  Simpson's Index for diversity of parasite unexposed and exposed fish. Gut microbial alpha-diversity significantly differs between parasite exposed fish reared at 28°C and 32°C water temperature relative to unexposed control fish, but gut microbial alpha-diversity does not differ between parasite unexposed and exposed fish reared at 35°C water temperature. Capscale ordinations based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main and interaction effects of temperature and parasite exposure (treatment) (C) of pre-exposure samples at 0 dpe, and  (D) post-exposure samples after 0 dpe. The analysis shows gut microbiome composition differs between fish reared at different water temperatures prior to parasite exposure, and parasite exposure further drives these temperature associated differences in microbiome community composition. Ribbons and ellipses indicate 95% confidence interval. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate statistically significant covariates and direction of greatest change in the indicated covariates.
 
 
 #### 6A)
@@ -1586,7 +1789,22 @@ tmp.variables <- "TEMP:TREAT"
 
 ```{r plots-6A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[["PreExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[["PreExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_6A"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1654,7 +1872,22 @@ tmp.variables <- "TEMP:TREAT"
 
 ```{r plots-6B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-alpha.plots[["PostExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- alpha.plots[["PostExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_6B"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1722,7 +1955,22 @@ tmp.variables <- "TEMP:TREAT"
 
 ```{r plots-6C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[["PreExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[["PreExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_6C"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -1789,7 +2037,22 @@ tmp.variables <- "TEMP:TREAT"
 
 ```{r plots-6D, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
-beta.plots[["PostExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
+# Store the plot in a temporary variable for saving
+p <- beta.plots[["PostExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
+
+# Display the plot
+p
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_6D"
+
+# Save as PNG and PDF
+ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
+       plot = p, width = 6.5, height = 6.5, dpi = 300)
+ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")), 
+       plot = p, width = 6.5, height = 6.5)
 
 ```
 
@@ -2041,11 +2304,26 @@ tmp.subset <- "All"
 
 #### 7) Gut microbial abundance is significantly associated with environmental conditions and stressors
 
-**Fig. 7** A heatmap of model coefficient values of the top 50 statistically significant abundant gut microbial taxa identified by MaAsLin2. The color of each cell represents the coefficient value and direction (red is positive, blue is negative). A “+” or “-” indicates a statistically significant association was observed between taxon abundance and a covariate. Gray colored cells indicate a significant effect was not observed.
+**Fig. 7** A heatmap of model coefficient values of the top 50 statistically significant abundant gut microbial taxa identified by MaAsLin2. The color of each cell represents the coefficient value and direction (red is positive, blue is negative). A "+" or "-" indicates a statistically significant association was observed between taxon abundance and a covariate. Gray colored cells indicate a significant effect was not observed.
 
 ```{r plots-7, out.width="90%", echo=FALSE}
 
-diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["Top50"]]
+# Store the plot in a temporary variable for saving
+gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["Top50"]]
+
+# Display the plot
+gt_table
+
+
+
+# Extract figure number from chunk name
+fig_name <- "Fig_7"
+
+
+# Save as PNG and PDF
+gt::gtsave(gt_table, filename = file.path(png_dir, paste0(fig_name, ".png")))
+gt::gtsave(gt_table, filename = file.path(pdf_dir, paste0(fig_name, ".png")))
+
 
 ```
 
@@ -2057,21 +2335,30 @@ diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]]
 Click on tabs to reveal tables displaying additional information.
 
 ###### S7.1
-
 ```{r tables-S7X-1}
+# Store the gt table
+gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigCounts"]]
 
-diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigCounts"]]
+# Display the table
+gt_table
 
+# Save as PNG and PDF
+# gt::gtsave(gt_table, filename = file.path(png_dir, "S7-1.png"))
+# gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7-1.pdf"))
 ```
 
 ###### S7.2
-
 ```{r tables-S7X-2}
+# Store the gt table
+gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigTaxonomy"]]
 
-diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigTaxonomy"]]
+# Display the table
+gt_table
 
+# Save as PNG and PDF
+# gt::gtsave(gt_table, filename = file.path(png_dir, "S7-2.png"))
+# gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7-2.pdf"))
 ```
-
 
 ##### Suppl. {.tabset}
 
@@ -2080,23 +2367,25 @@ diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]]
 Click on tabs to reveal figures displaying additional metrics.
 
 ###### S7.1
-
-
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
 tmp.subset <- "All"
-
 ```
 
 ```{r plots-S7X, echo=FALSE}
+# Store the gt table
+gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["All_sig"]] %>%
+  gt::tab_options(
+    container.overflow.y = "auto",
+    container.height = gt::px(1024)
+  )
 
-diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["All_sig"]] %>%
-  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
-    gt::tab_options(
-      container.overflow.y = "auto",       # Enable vertical overflow
-      container.height = gt::px(1024)           # Set the height to 624 pixels (6.5 inches)
-    )
+# Display the table
+gt_table
 
+# Save as PNG and PDF
+# gt::gtsave(gt_table, filename = file.path(png_dir, "S7X.png"))
+# gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7X.pdf"))
 ```
 
 
