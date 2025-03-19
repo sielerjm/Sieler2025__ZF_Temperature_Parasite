@@ -2311,7 +2311,7 @@ tmp.subset <- "All"
 # Store the plot in a temporary variable for saving
 gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["Top50"]]
 
-# Display the plot
+# Display the plot 
 gt_table
 
 
@@ -2322,7 +2322,7 @@ fig_name <- "Fig_7"
 
 # Save as PNG and PDF
 gt::gtsave(gt_table, filename = file.path(png_dir, paste0(fig_name, ".png")))
-gt::gtsave(gt_table, filename = file.path(pdf_dir, paste0(fig_name, ".png")))
+gt::gtsave(gt_table, filename = file.path(pdf_dir, paste0(fig_name, ".pdf")))
 
 
 ```
