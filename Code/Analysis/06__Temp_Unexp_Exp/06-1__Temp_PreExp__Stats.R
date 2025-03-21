@@ -189,10 +189,10 @@ beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["HoD.Tukey.Table"]] <-
 
 ## SUPP ---------------------------------------------------------------
 
-### 6C.1 TREAT by TEMP ------------------------------------------------------
+### 6B.1 TREAT by TEMP ------------------------------------------------------
 
 
-beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP.ADONIS__SUPP_6C.1"]] <- {
+beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP.ADONIS__SUPP_6B.1"]] <- {
   
   # List of temperatures and metrics
   Temperature <- c(28, 32, 35)
@@ -221,7 +221,7 @@ beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP.ADONIS__SUPP_6C.1"]] <- {
     set_GT(var = "Metric", group.by = "Metric")
 }
 
-beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["HoD.Tukey__SUPP_6C.1"]] <- {
+beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["HoD.Tukey__SUPP_6B.1"]] <- {
   
   
   # List of temperatures and metrics
