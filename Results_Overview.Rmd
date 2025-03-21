@@ -2130,23 +2130,7 @@ tmp.variables <- "TEMP:TREAT"
 alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot_SUPP"]]
 ```
 
-
 #### S6B
-
-
-```{r include=FALSE}
-# creates a temporary variable to aid in automating knitted document
-tmp.subset <- "PostExposed"
-tmp.variables <- "TEMP:TREAT"
-
-```
-
-```{r plots-S6B, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
-alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot_SUPP"]]
-```
-
-
-#### S6C
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -2155,7 +2139,7 @@ tmp.variables <- "TEMP:TREAT"
 
 ```
 
-```{r plots-S6C, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+```{r plots-S6B, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
 
 beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 
@@ -2170,13 +2154,15 @@ Click on tabs to display tables and figures. Scroll to see additional rows.
 ###### By Temp
 
 
-```{r plots-6C.1_byTemp, echo=FALSE, fig.height=4, fig.width=6.5, message=FALSE, warning=FALSE}
+```{r plots-6B.1_byTemp, echo=FALSE, fig.height=4, fig.width=6.5, message=FALSE, warning=FALSE}
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6C.1_bray"]]
+# Note to future self (from 03-21-25): If the code breaks here it's because I renamed 6B and 6C to be congruent with the order they appear in the manuscript. For the plots to appear correctly in the supplemental figures, the code generating the stats and plots for section 6B and 6C need to be reran and the Robjects saved prior to running this markdown file. I've already correctly renamed the variables (I think) here. 
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6C.1_canberra"]]
+beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6B.1_bray"]]
 
-beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6C.1_gunifrac"]]
+beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6B.1_canberra"]]
+
+beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6B.1_gunifrac"]]
 
 ```
 
@@ -2186,15 +2172,15 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6C.1_gunifrac"]]
 
 Click on tabs to display tables and figures. Scroll to see additional rows.
 
-```{r empty-6C.1_hide}
+```{r empty-6B.1_hide}
 
 ```
 
 ###### ADONIS2
 
-```{r stats-6C.1-adonis2, echo=FALSE}
+```{r stats-6B.1-adonis2, echo=FALSE}
 
-beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_6C.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_6B.1"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -2205,9 +2191,9 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_6C.1"]] %>%
 
 ###### Dispersion (ANOVA)
 
-```{r stats-6C.1-anova, echo=FALSE}
+```{r stats-6B.1-anova, echo=FALSE}
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6C.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6B.1"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -2218,7 +2204,19 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6C.1"]] %>%
 
 
 
+#### S6B
 
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "PostExposed"
+tmp.variables <- "TEMP:TREAT"
+
+```
+
+```{r plots-S6C, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+alpha.plots[[tmp.subset]][[tmp.variables]][["TUKEY"]][["Plot_SUPP"]]
+```
 
 #### S6D
 
