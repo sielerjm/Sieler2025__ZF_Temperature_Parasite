@@ -101,7 +101,7 @@ The raw sequence files generated during the current study are available at the N
 
 ```{r exp-scheme, fig.width=7.5, echo=FALSE}
 
-knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/Fig1.png"))
+knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_1.png"))
 
 ```
 
@@ -531,7 +531,7 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 
 ```{r plots-3A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE }
 
-knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/Fig3A.png"))
+knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_3A.png"))
 
 ```
 
@@ -2321,8 +2321,8 @@ fig_name <- "Fig_7"
 
 
 # Save as PNG and PDF
-gt::gtsave(gt_table, filename = file.path(png_dir, paste0(fig_name, ".png")))
-gt::gtsave(gt_table, filename = file.path(pdf_dir, paste0(fig_name, ".pdf")))
+# gt::gtsave(gt_table, filename = file.path(png_dir, paste0(fig_name, ".png")))
+# gt::gtsave(gt_table, filename = file.path(pdf_dir, paste0(fig_name, ".pdf")))
 
 
 ```
