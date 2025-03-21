@@ -675,6 +675,62 @@ process_bdisp <- function(ps_obj, var, var_filt, var_test, metric) {
 }
 
 
+# Export Distance Matrix -------------------------------------------------------------------------
+# Description: Exports a distance matrix
+# Input: 
+# Output: 
+
+# Define output directory
+tmp.output_dir <- "/Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Data/Output/DistanceMatrices"
+
+# beta.dist.mat
+
+# Function to extract, convert, and export distance matrices
+export_distance_matrices <- function(nested_list, output_dir) {
+  walk2(
+    .x = nested_list,
+    .y = names(nested_list),
+    .f = function(group_list, group_name) {
+      walk2(
+        .x = group_list,
+        .y = names(group_list),
+        .f = function(ps_extra_obj, dist_name) {
+          # Check if object is of class 'psExtra' before extracting
+          if (!inherits(ps_extra_obj, "psExtra")) {
+            message("Skipping non-psExtra object: ", group_name, " - ", dist_name)
+            return(NULL)
+          }
+          
+          # Extract distance matrix from psExtra object
+          dist_matrix <- ps_extra_obj@dist  # Access distance matrix stored in psExtra
+          
+          # Convert to matrix
+          mat <- as.matrix(dist_matrix)
+          
+          # Construct output file path
+          filename <- paste0(group_name, "_", dist_name, ".csv") %>%
+            str_replace_all("\\s+", "_")  # Replace spaces with underscores
+          output_path <- file.path(output_dir, filename)
+          
+          # Write to CSV
+          write_csv(as.data.frame(mat), output_path)
+        }
+      )
+    }
+  )
+}
+
+# Run the function
+export_distance_matrices(beta.dist.mat, tmp.output_dir)
+
+
+# Export CSV to Sheets -------------------------------------------------------------------------
+# Description: 
+# Input: 
+# Output: 
+
+
+
 # -------------------------------------------------------------------------
 # Description: 
 # Input: 
