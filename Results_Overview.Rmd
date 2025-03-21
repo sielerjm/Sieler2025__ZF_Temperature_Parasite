@@ -1898,7 +1898,7 @@ ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")),
 
 Click on tabs to display tables. Scroll to see additional rows.
 
-```{r empty-6C}
+```{r empty-6B}
 
 ```
 
@@ -1953,7 +1953,7 @@ tmp.variables <- "TEMP:TREAT"
 
 ```
 
-```{r plots-6B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
+```{r plots-6C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
 # Store the plot in a temporary variable for saving
 p <- alpha.plots[["PostExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
