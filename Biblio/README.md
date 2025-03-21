@@ -1,3 +1,0 @@
-# Biblio
-
-Contains bibliographic files.
