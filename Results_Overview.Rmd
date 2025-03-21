@@ -1860,12 +1860,13 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
 
 ##### Addl. Metrics
 
+
 #### 6B)
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
 
-tmp.subset <- "PostExposed"
+tmp.subset <- "PreExposed"
 tmp.variables <- "TEMP:TREAT"
 
 ```
@@ -1873,7 +1874,7 @@ tmp.variables <- "TEMP:TREAT"
 ```{r plots-6B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
 # Store the plot in a temporary variable for saving
-p <- alpha.plots[["PostExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
+p <- beta.plots[["PreExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
 
 # Display the plot
 p
@@ -1897,16 +1898,15 @@ ggsave(filename = file.path(pdf_dir, paste0(fig_name, ".pdf")),
 
 Click on tabs to display tables. Scroll to see additional rows.
 
-```{r empty-6B}
+```{r empty-6C}
 
 ```
 
+###### ADONIS2
 
-###### GLM
+```{r stats-6B-adonis2, echo=FALSE}
 
-```{r stats-6B-glm, echo=FALSE}
-
-alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -1915,11 +1915,11 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
 
 ```
 
-###### ANOVA
+###### Dispersion (ANOVA)
 
 ```{r stats-6B-anova, echo=FALSE}
 
-alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.ANOVA.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -1928,11 +1928,11 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
 
 ```
 
-###### Tukey
+###### Dispersion (Tukey)
 
 ```{r stats-6B-tukey, echo=FALSE}
 
-alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -1948,15 +1948,15 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
 
-tmp.subset <- "PreExposed"
+tmp.subset <- "PostExposed"
 tmp.variables <- "TEMP:TREAT"
 
 ```
 
-```{r plots-6C, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
+```{r plots-6B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
 # Store the plot in a temporary variable for saving
-p <- beta.plots[["PreExposed"]][["TEMP:TREAT"]][["CAP"]][["Plot"]]
+p <- alpha.plots[["PostExposed"]][["TEMP:TREAT"]][["TUKEY"]][["Plot"]]
 
 # Display the plot
 p
@@ -1984,11 +1984,12 @@ Click on tabs to display tables. Scroll to see additional rows.
 
 ```
 
-###### ADONIS2
 
-```{r stats-6C-adonis2, echo=FALSE}
+###### GLM
 
-beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
+```{r stats-6C-glm, echo=FALSE}
+
+alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -1997,11 +1998,11 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
 
 ```
 
-###### Dispersion (ANOVA)
+###### ANOVA
 
 ```{r stats-6C-anova, echo=FALSE}
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.ANOVA.Table"]] %>%
+alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -2010,11 +2011,11 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.ANOVA.Table"]] %>%
 
 ```
 
-###### Dispersion (Tukey)
+###### Tukey
 
 ```{r stats-6C-tukey, echo=FALSE}
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey.Table"]] %>%
+alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
     gt::tab_options(
       container.overflow.y = "auto",       # Enable vertical overflow
@@ -2024,6 +2025,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey.Table"]] %>%
 ```
 
 ##### Addl. Metrics
+
 
 #### 6D)
 

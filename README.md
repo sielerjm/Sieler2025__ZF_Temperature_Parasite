@@ -84,7 +84,7 @@ rmarkdown::render("Results_Overview.Rmd")
 
 ## Data Availability
 
-Raw sequencing data is available at [NCBI BioProject PRJNA1219243](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1219243). Post-DADA2 processed data files are included in the `/Data` directory.
+Raw sequencing data is available at [NCBI BioProject PRJNA1219243](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1219243). Post-DADA2 processed data files are included in the `/Data` directory. Supplemental tables and figures can be found here: [Data/Supplemental_Tables_and_Figures](https://github.com/sielerjm/Sieler2025__ZF_Temperature_Parasite/tree/main/Data/Supplemental_Tables_and_Figures).
 
 ## Results
 
