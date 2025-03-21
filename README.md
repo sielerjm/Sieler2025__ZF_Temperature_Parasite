@@ -7,7 +7,7 @@ This repository contains [figures and tables](https://sielerjm.github.io/Sieler2
 
 ## Overview
 
-![Experimental Design Overview](ExperimentalDesignSchematic.png)
+![Experimental Design Overview](Media/ExperimentalDesignSchematic.png)
 
 ![Zebrafish Microbiome Animation](Media/0210/0210.gif)
 
