@@ -2,7 +2,7 @@
 
 This repository contains [figures and tables](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html), and the analysis code and data processing pipelines for:
 
-"Modelling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection" (*in-prep*). DOI: [pending]
+["Modelling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection"](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html) (*in-prep*, draft available upon request). 
 * Michael J. Sieler Jr., Colleen E. Al-Samarrie, Kristin D. Kasschau, Mike L. Kent, Thomas J. Sharpton
 
 ## Overview
@@ -12,6 +12,9 @@ This repository contains [figures and tables](https://sielerjm.github.io/Sieler2
 ![Zebrafish Microbiome Animation](Media/0210/0210.gif)
 
 *Animation demonstrating how to navigate the supplemental figures and tables document. [View document here](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html)*
+
+
+
 
 ## Repository Structure
 
