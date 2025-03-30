@@ -26,11 +26,12 @@ Supplemental tables and figures can be found [here](https://github.com/sielerjm/
 ## Repository Structure
 
     ├── Code/
-    │   ├── Analysis/        # Statistical analysis scripts
+    │   ├── Analysis/       # Statistical analysis scripts
     │   ├── Dada2/          # 16S rRNA sequence processing
     │   └── Plots/          # Figure generation scripts
     ├── Data/               # Raw and processed data files
-    └── Results/           # Output files and figures
+    ├── Manuscript/         # Manuscript and supplemental files
+    └── Results/            # Output files and figures
 
 ## Running the Analysis
 
