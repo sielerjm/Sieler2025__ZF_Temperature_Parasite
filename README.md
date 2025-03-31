@@ -13,7 +13,7 @@ This respository contains the code for running the analysis for:
 
 ## Supplemental Tables and Figures
 
-Supplemental tables and figures can be found [here](https://github.com/sielerjm/Sieler2025__ZF_Temperature_Parasite/tree/main/Results/Supplemental_Tables_and_Figures), or viewed interactively at this link [here](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html) (seen in gif below):
+Supplemental tables and figures can be found [here](https://github.com/sielerjm/Sieler2025__ZF_Temperature_Parasite/tree/main/Manuscript/Supplemental_Tables_and_Figures), or viewed interactively at this link [here](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html) (seen in gif below):
 
 
 ![Zebrafish Microbiome Animation](Media/0210/0210.gif)
