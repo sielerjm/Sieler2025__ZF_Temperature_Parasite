@@ -2,7 +2,7 @@
 
 This respository contains the code for running the analysis for:
 
-["Modelling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection"](https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html) (*in-prep*, draft available upon request). 
+["Modelling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection"]([https://sielerjm.github.io/Sieler2025__ZF_Temperature_Parasite/Results_Overview.html](https://doi.org/10.1101/2025.03.28.644597)) (*bioRxiv*). 
 * Michael J. Sieler Jr., Colleen E. Al-Samarrie, Kristin D. Kasschau, Mike L. Kent, Thomas J. Sharpton
 
 
