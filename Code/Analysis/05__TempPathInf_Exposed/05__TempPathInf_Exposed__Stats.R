@@ -604,7 +604,7 @@ beta.stats[[tmp.resSubSection]][["TEMP:CLUSTER"]][["CAP.ADONIS__SUPP_5D.1"]] <- 
 }
 
 
-beta.stats[[tmp.resSubSection]][["TEMP:CLUSTER"]][["HoD.Tukey__SUPP_6D.1"]]  <- {
+beta.stats[[tmp.resSubSection]][["TEMP:CLUSTER"]][["HoD.Tukey__SUPP_5D.1"]]  <- {
   # Function to perform beta dispersion analysis
   perform_betaDisp_analysis <- function(alpha_metric, beta_metric) {
     tmp.res <- tmp.psOBJ %>%

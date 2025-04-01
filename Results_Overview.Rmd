@@ -1422,7 +1422,32 @@ Click on tabs to display tables. Scroll to see additional rows.
 
 ###### GLM
 
-```{r stats-5C-glm, echo=FALSE}
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:CLUSTER"
+
+```
+
+```{r stats-5C1-glm, echo=FALSE}
+
+alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
+  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
+    gt::tab_options(
+      container.overflow.y = "auto",       # Enable vertical overflow
+      container.height = gt::px(624)           # Set the height to 624 pixels (6.5 inches)
+    )
+
+```
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:WORM"
+
+```
+
+```{r stats-5C2-glm, echo=FALSE}
 
 alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -1435,7 +1460,32 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["GLM.Table"]] %>%
 
 ###### ANOVA
 
-```{r stats-5C-anova, echo=FALSE}
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:CLUSTER"
+
+```
+
+```{r stats-5C1-anova, echo=FALSE}
+
+alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
+  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
+    gt::tab_options(
+      container.overflow.y = "auto",       # Enable vertical overflow
+      container.height = gt::px(624)           # Set the height to 624 pixels (6.5 inches)
+    )
+
+```
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:WORM"
+
+```
+
+```{r stats-5C2-anova, echo=FALSE}
 
 alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -1448,7 +1498,14 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
 
 ###### Tukey
 
-```{r stats-5C-tukey, echo=FALSE}
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:CLUSTER"
+
+```
+
+```{r stats-5C1-tukey, echo=FALSE}
 
 alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -1458,6 +1515,8 @@ alpha.stats[[tmp.subset]][[tmp.variables]][["Tukey.Table"]] %>%
     )
 
 ```
+
+
 
 ##### Addl. Metrics
 
@@ -1505,7 +1564,32 @@ Click on tabs to display tables. Scroll to see additional rows.
 
 ###### ADONIS2
 
-```{r stats-5D-adonis2, echo=FALSE}
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:CLUSTER"
+
+```
+
+```{r stats-5D1-adonis2, echo=FALSE}
+
+beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
+  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
+    gt::tab_options(
+      container.overflow.y = "auto",       # Enable vertical overflow
+      container.height = gt::px(624)           # Set the height to 624 pixels (6.5 inches)
+    )
+
+```
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:WORM"
+
+```
+
+```{r stats-5D2-adonis2, echo=FALSE}
 
 beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -1517,6 +1601,13 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS.Table"]] %>%
 ```
 
 ###### Dispersion (ANOVA)
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:CLUSTER"
+
+```
 
 ```{r stats-5D-anova, echo=FALSE}
 
@@ -1624,7 +1715,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_5D.1"]] %>%
       subtitle = "adonis2(Beta Distance ~ Cluster); Exposed fish"
     )
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_5D.1"]] %>%
   filter(Alpha.Metric == "Phylogenetic") %>%
     set_GT(var = "p.value", group.by = "Alpha.Metric") %>%
 
@@ -1653,7 +1744,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_5D.1"]] %>%
       subtitle = "adonis2(Beta Distance ~ Cluster); Exposed fish"
     )
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_5D.1"]] %>%
   filter(Alpha.Metric == "Richness") %>%
     set_GT(var = "p.value", group.by = "Alpha.Metric") %>%
 
@@ -1681,7 +1772,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_5D.1"]] %>%
       subtitle = "adonis2(Beta Distance ~ Cluster); Exposed fish"
     )
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_5D.1"]] %>%
   filter(Alpha.Metric == "Shannon") %>%
     set_GT(var = "p.value", group.by = "Alpha.Metric") %>%
 
@@ -1709,7 +1800,7 @@ beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_5D.1"]] %>%
       subtitle = "adonis2(Beta Distance ~ Cluster); Exposed fish"
     )
 
-beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_5D.1"]] %>%
   filter(Alpha.Metric == "Simpson") %>%
     set_GT(var = "p.value", group.by = "Alpha.Metric") %>%
 
