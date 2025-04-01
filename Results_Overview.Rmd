@@ -90,7 +90,7 @@ if (!dir.exists(pdf_dir)) dir.create(pdf_dir, recursive = TRUE)
 ### Publication Information
 
 The published version of this manuscript can be found here:
-Sieler Jr M.J., Al-Samarrie C.E., Kasschau K.D., Kent M.L., Sharpton T.J.. Modelling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection. *bioRxiv* (2025). DOI: 
+Sieler Jr M.J., Al-Samarrie C.E., Kasschau K.D., Kent M.L., Sharpton T.J.. Modeling the zebrafish gut microbiome's resistance and sensitivity to climate change and infection. *bioRxiv* (2025). DOI: https://doi.org/10.1101/2025.03.28.644597
 
 All code generated during this analysis is available in the [GitHub Repository](https://github.com/sielerjm/Sieler2025__ZF_Temperature_Parasite/).
 
