@@ -340,7 +340,7 @@ beta.stats[[tmp.resSubSection]][["TEMP:DPE"]][["HoD.ANOVA.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "ANOVA: Homogeneity of Dispersion",
-    subtitle = "ANOVA(Beta Disperson ~ Temperature); Exposed fish"
+    subtitle = "ANOVA(Beta Disperson ~ Temperature*DPE); Exposed fish"
   )
 
 ##### Tukey ------------------------------------------------------------------
