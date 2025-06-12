@@ -1,0 +1,41 @@
+2025-06-11 14:24:50.562237 INFO::Writing function arguments to log file
+2025-06-11 14:24:50.565198 DEBUG::Function arguments
+2025-06-11 14:24:50.56552 DEBUG::Output folder: /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM
+2025-06-11 14:24:50.565979 DEBUG::Min Abundance: 0.000000
+2025-06-11 14:24:50.566822 DEBUG::Min Prevalence: 0.000000
+2025-06-11 14:24:50.567254 DEBUG::Normalization: TSS
+2025-06-11 14:24:50.567666 DEBUG::Transform: LOG
+2025-06-11 14:24:50.567985 DEBUG::Analysis method: LM
+2025-06-11 14:24:50.568402 DEBUG::Max significance: 0.250000
+2025-06-11 14:24:50.568721 DEBUG::Random effects:
+2025-06-11 14:24:50.569005 DEBUG::Fixed effects: Total.Worm.Count
+2025-06-11 14:24:50.569285 DEBUG::Correction method: BH
+2025-06-11 14:24:50.569588 DEBUG::Standardize: FALSE
+2025-06-11 14:24:50.569869 DEBUG::Cores: 8
+2025-06-11 14:24:50.570111 INFO::Verifying options selected are valid
+2025-06-11 14:24:50.570982 INFO::Determining format of input files
+2025-06-11 14:24:50.571742 INFO::Input format is data samples as rows and metadata samples as rows
+2025-06-11 14:24:50.574797 DEBUG::A total of 119 samples were found in both the data and metadata
+2025-06-11 14:24:50.575402 DEBUG::Reordering data/metadata to use same sample ordering
+2025-06-11 14:24:50.579208 INFO::Formula for fixed effects: expr ~  Total.Worm.Count
+2025-06-11 14:24:50.580528 INFO::Filter data based on min abundance and min prevalence
+2025-06-11 14:24:50.581386 INFO::Total samples in data: 119
+2025-06-11 14:24:50.582172 INFO::Min samples required with min abundance for a feature not to be filtered: 0.000000
+2025-06-11 14:24:50.589231 INFO::Total filtered features: 0
+2025-06-11 14:24:50.590547 INFO::Filtered feature names from abundance and prevalence filtering:
+2025-06-11 14:24:50.61184 INFO::Total filtered features with variance filtering: 0
+2025-06-11 14:24:50.612818 INFO::Filtered feature names from variance filtering:
+2025-06-11 14:24:50.6135 INFO::Running selected normalization method: TSS
+2025-06-11 14:24:50.619667 INFO::Bypass z-score application to metadata
+2025-06-11 14:24:50.62049 INFO::Running selected transform method: LOG
+2025-06-11 14:24:50.636715 INFO::Running selected analysis method: LM
+2025-06-11 14:24:50.638208 INFO::Creating cluster of 8 R processes
+2025-06-11 14:25:00.683331 INFO::Counting total values for each feature
+2025-06-11 14:25:00.733631 INFO::Writing filtered data to file /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/features/filtered_data.tsv
+2025-06-11 14:25:00.757437 INFO::Writing filtered, normalized data to file /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/features/filtered_data_norm.tsv
+2025-06-11 14:25:00.805564 INFO::Writing filtered, normalized, transformed data to file /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/features/filtered_data_norm_transformed.tsv
+2025-06-11 14:25:00.910969 INFO::Writing residuals to file /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/fits/residuals.rds
+2025-06-11 14:25:01.156893 INFO::Writing fitted values to file /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/fits/fitted.rds
+2025-06-11 14:25:01.16304 INFO::Writing all results to file (ordered by increasing q-values): /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/all_results.tsv
+2025-06-11 14:25:01.169736 INFO::Writing the significant results (those which are less than or equal to the threshold of 0.250000 ) to file (ordered by increasing q-values): /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/significant_results.tsv
+2025-06-11 14:25:01.17387 INFO::Writing heatmap of significant results to file: /Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/Exp__WORM/heatmap.pdf
