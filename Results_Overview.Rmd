@@ -107,7 +107,7 @@ knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_1.p
 
 ```
 
-**Fig.1** Experimental design showing treatments and husbandry events during the course of the study. Symbols indicate when an experimental event occurred at each time point. (1) 260 fish were assigned and acclimated to one of three water temperature groups (e.g., 28°C, 32°C, or 35°C) and reared from 0 to 164 days post fertilization (dpf). (2a) At 164 dpf (or 0 days post exposure; DPE), fecal collections were collected from a random selection of five fish per tank  (n = 60). Additionally, histological and wet mount assessments were conducted on selected fish to assess presence of infection and infection burden. (1b) Afterwards, a cohort of fish from each water temperature group were exposed to Pseudocapillaria tomentosa. (3-6) Subsequent fecal samples were collected and histopathological assessments were conducted at 14 dpe (n = 54), (3) 21 dpe (n = 48), (4) 28 dpe (n = 47), and (5) 42 dpe (n = 51).
+**Fig.1** Experimental design showing treatments and husbandry events during the course of the study. Symbols indicate when an experimental event occurred at each time point. (1) 260 zebrafish were assigned and acclimated to one of three water temperature groups (e.g., 28°C, 32°C, or 35°C) and reared from 0 to 164 days post fertilization (dpf). (2a) At 164 dpf (or 0 days post exposure; dpe), fecal collections were collected from a random selection of five fish per tank (n = 60). Additionally, histological and wet mount assessments were conducted on selected fish to assess presence of infection and infection burden. (2b) Afterwards, a cohort of fish from each water temperature group were exposed to the nematode Pseudocapillaria tomentosa. (4-6)  Subsequent fecal samples were collected and histopathological assessments were conducted at 14 dpe (n = 54), (4) 21 dpe (n = 48), (5) 28 dpe (n = 47), and (6) 42 dpe (n = 51). 
 
 
 ## Results
@@ -116,7 +116,7 @@ knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_1.p
 ### Fig. 2) Water temperature shapes gut microbiome structure {.tabset}
 
 
-**Fig. 2** Effects of water temperature on zebrafish gut microbiomes. (A) Simpson's Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between fish reared at different water temperatures. (C) Simpson's Index of diversity shows microbial gut diversity increases with time from 0 days post exposure (dpe) to 42 dpe, irrespective of water temperature. (D) Capscale ordination of gut microbiome composition based on the Bray-Curtis dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate direction of greatest change in the indicated by covariates.
+**Fig. 2** Effects of water temperature on zebrafish gut microbiomes. (A) Simpson’s Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between fish reared at different water temperatures. (C) Simpson’s Index of diversity shows microbial gut diversity increases with time from 0 days post exposure (dpe) to 42 dpe, irrespective of water temperature. (D) Capscale ordination of gut microbiome composition based on the Bray-Curtis dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate direction of greatest change in the indicated by covariates.
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -539,18 +539,11 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 ### Fig. 3) Infection burden is highest in fish reared at lower water temperatures  {.tabset}
 
 
-**Fig. 3** Infection outcomes in zebrafish exposed to Pseudocapillaria tomentosa. (A) Histological sections stained with ### stain in zebrafish exposed to P. tomentosa examined at ### days post exposure. Nematodes in intestinal lumen. Arrow = ###. (B) Infection outcome analysis of fish exposed to P. tomentosa (n = 89) by temperature. Fish reared at 28°C and 32°C water temperatures had significantly different infection burden to fish reared at 35°C water temperature. Only one fish reared at 35°C was identified as being positively infected by wet mount. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level.
+**Fig. 3** Infection outcomes in zebrafish exposed to Pseudocapillaria tomentosa. (A) Infection outcome analysis of fish exposed to P. tomentosa (n = 89) by temperature. Fish reared at 28°C and 32°C water temperatures had significantly different infection burden to fish reared at 35°C water temperature. Only one fish in our microbiome analysis reared at 35°C was identified as being positively infected by wet mount. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. (B) Histological sections stained with H&E stain in zebrafish exposed to P. tomentosa examined at 35°C at 21 days post exposure. Arrow = larval worms, sagittal and cross sections. Bar = 50 µm.
 
 
-#### 3A)
 
-```{r plots-3A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE }
-
-knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_3A.png"))
-
-```
-
-#### 3B) {.active}
+#### 3A) {.active}
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -559,7 +552,7 @@ tmp.variables <- "TEMP"
 
 ```
 
-```{r plots-3B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
+```{r plots-3A, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE}
 
 # Store the plot in a temporary variable for saving
 p <- worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot"]] + 
@@ -572,7 +565,7 @@ p
 
 
 # Extract figure number from chunk name
-fig_name <- "Fig_3B"
+fig_name <- "Fig_3A"
 
 # Save as PNG and PDF
 ggsave(filename = file.path(png_dir, paste0(fig_name, ".png")), 
@@ -633,6 +626,15 @@ worm.stats[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB.Table"]] %>%
 
 ```
 
+#### 3B)
+
+```{r plots-3B, fig.height=6.5, fig.width=6.5, message=F, warning=FALSE, echo=FALSE }
+
+knitr::include_graphics(file.path(proj.path,"Manuscript/Main_Figures/PNG/Fig_3B.png"))
+
+```
+
+
 ##### {.tabset}
 
 ###### (hide)
@@ -665,7 +667,7 @@ Click on tabs to reveal supplementary figures and tables.
 
 Click on tabs to reveal figures displaying supplementary figures and tables
 
-#### S3B.1
+#### S3A.1
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -674,7 +676,7 @@ tmp.variables <- "TEMP:DPE"
 
 ```
 
-```{r plots-S3B-1, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+```{r plots-S3A-1, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
 
 worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot"]]
 
@@ -686,14 +688,14 @@ worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot"]]
 
 Click on tabs to display tables. Scroll to see additional rows.
 
-```{r empty-S3B-1}
+```{r empty-S3A-1}
 
 ```
 
 
 ###### GLM
 
-```{r stats-S3B-1-glm, echo=FALSE}
+```{r stats-S3A-1-glm, echo=FALSE}
 
 worm.stats[[tmp.subset]][[tmp.variables]][["GLM.NB.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -706,7 +708,7 @@ worm.stats[[tmp.subset]][[tmp.variables]][["GLM.NB.Table"]] %>%
 
 ###### ANOVA
 
-```{r stats-S3B-1-anova, echo=FALSE}
+```{r stats-S3A-1-anova, echo=FALSE}
 
 worm.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -719,7 +721,7 @@ worm.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
 
 ###### Tukey
 
-```{r stats-S3B-1-tukey, echo=FALSE}
+```{r stats-S3A-1-tukey, echo=FALSE}
 
 worm.stats[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -730,7 +732,7 @@ worm.stats[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB.Table"]] %>%
 
 ```
 
-#### S3B.2
+#### S3A.2
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
@@ -739,7 +741,7 @@ tmp.variables <- "TEMP:DPE"
 
 ```
 
-```{r plots-S3B-2, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+```{r plots-S3A-2, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
 
 worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot_v2"]]
 
@@ -751,14 +753,14 @@ worm.plots[[tmp.subset]][[tmp.variables]][["TUKEY_GLM.NB"]][["Plot_v2"]]
 
 Click on tabs to display tables. Scroll to see additional rows.
 
-```{r empty-S3B-2}
+```{r empty-S3A-2}
 
 ```
 
 
 ###### GLM
 
-```{r stats-S3B-2-glm, echo=FALSE}
+```{r stats-S3A-2-glm, echo=FALSE}
 
 worm.stats[[tmp.subset]][[tmp.variables]][["GLM.NB.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -771,7 +773,7 @@ worm.stats[[tmp.subset]][[tmp.variables]][["GLM.NB.Table"]] %>%
 
 ###### ANOVA
 
-```{r stats-S3B-2-anova, echo=FALSE}
+```{r stats-S3A-2-anova, echo=FALSE}
 
 worm.stats[[tmp.subset]][[tmp.variables]][["ANOVA.Table"]] %>%
   # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
@@ -823,7 +825,7 @@ worm.stats[[tmp.subset]][["Method.Counts"]][["Method_Comparison_Stats"]]
 
 ### Fig. 4) Gut microbiome response to parasite exposure varies across water temperature {.tabset}
 
-**Fig. 4** Effects of Pseudocapillaria tomentosa exposure on zebrafish gut microbiomes reared at different water temperatures. (A) Simpson's Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C water temperature to fish reared at 32°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between parasite exposed fish reared at different water temperatures. (C) Simpson's Index of diversity shows microbial gut diversity decreases with time from 0 days post exposure (dpe) to 42 dpe in parasite exposed fish reared at 28°C water temperature. (D) Capscale ordination of gut microbiome composition based on the Canberra dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between parasite exposed fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A "*" indicates statistical significance below the "0.05" level. Black arrows indicate direction of greatest change in the indicated covariates.
+**Fig. 4** Effects of Pseudocapillaria tomentosa exposure on zebrafish gut microbiomes reared at different water temperatures. (A) Simpson’s Index of diversity shows that gut microbiome diversity significantly differs between fish reared at 28°C water temperature to fish reared at 32°C and 35°C water temperatures. (B) Capscale ordination based on the Bray-Curtis dissimilarity of gut microbiome composition constrained on the main effect of temperature. The analysis shows that gut microbiome composition significantly differs between parasite exposed fish reared at different water temperatures. (C) Simpson’s Index of diversity shows microbial gut diversity decreases with time from 0 days post exposure (dpe) to 42 dpe in parasite exposed fish reared at 28°C water temperature. (D) Capscale ordination of gut microbiome composition based on the Canberra dissimilarity constrained on the main effects of water temperature and time (days post exposure, dpe), and their interaction. The analysis shows that shows that gut microbiome composition differs between parasite exposed fish across time depending on water temperature. Ribbons and ellipses indicate 95% confidence interval. Only statistically significant relationships are shown. A “*” indicates statistical significance below the “0.05” level. Black arrows indicate direction of greatest change in the indicated covariates.
 
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
