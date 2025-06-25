@@ -47,6 +47,7 @@ alpha.stats <- readRDS(file = file.path(path.results, "Stats_Plots", "alpha_stat
 beta.stats <- readRDS(file = file.path(path.results, "Stats_Plots", "beta_stats.rds"))
 worm.stats <- readRDS(file = file.path(path.results, "Stats_Plots", "worm_stats.rds"))
 diffAbnd.stats <- readRDS(file = file.path(path.results, "Stats_Plots", "diffAbnd_stats.rds"))
+randomForest.stats <- readRDS(file = file.path(path.results, "Stats_Plots", "randomForest_stats.rds"))
 
 ## Load Plot Objects -------------------------------------------------------
 
@@ -54,6 +55,7 @@ alpha.plots <- readRDS(file = file.path(path.results, "Stats_Plots", "alpha_plot
 beta.plots <- readRDS(file = file.path(path.results, "Stats_Plots", "beta_plots.rds"))
 worm.plots <- readRDS(file = file.path(path.results, "Stats_Plots", "worm_plots.rds"))
 diffAbnd.plots <- readRDS(file = file.path(path.results, "Stats_Plots", "diffAbnd_plots.rds"))
+randomForest.plots <- readRDS(file = file.path(path.results, "Stats_Plots", "randomForest_plots.rds"))
 
 ## Load Session Info -------------------------------------------------------
 
@@ -516,6 +518,19 @@ tmp.variables <- "TEMP:DPE"
 ```
 
 ```{r plots-S2D, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+
+beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
+
+```
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Unexposed"
+tmp.variables <- "TEMP:DPE__TIME"
+
+```
+
+```{r plots-S2D.2, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
 
 beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 
@@ -1210,6 +1225,19 @@ tmp.variables <- "TEMP:DPE"
 ```
 
 ```{r plots-S4D, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
+
+beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
+
+```
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+tmp.variables <- "TEMP:DPE__TIME"
+
+```
+
+```{r plots-S4D.2, fig.height=6.5, fig.width=14, message=F, warning=FALSE, echo=FALSE}
 
 beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP"]]
 
@@ -2425,7 +2453,7 @@ fig_name <- "Fig_7"
 
 Click on tabs to reveal tables displaying additional information.
 
-###### S7.1
+###### S7A.1
 ```{r tables-S7X-1}
 # Store the gt table
 gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigCounts"]]
@@ -2438,7 +2466,7 @@ gt_table
 # gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7-1.pdf"))
 ```
 
-###### S7.2
+###### S7A.2
 ```{r tables-S7X-2}
 # Store the gt table
 gt_table <- diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]][["SUPP__SigTaxonomy"]]
@@ -2457,7 +2485,7 @@ gt_table
 
 Click on tabs to reveal figures displaying additional metrics.
 
-###### S7.1
+###### S7B.1
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
 tmp.subset <- "All"
@@ -2478,9 +2506,30 @@ gt_table
 # gt::gtsave(gt_table, filename = file.path(png_dir, "S7X.png"))
 # gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7X.pdf"))
 ```
+###### S7B.1
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "Exposed"
+```
 
+```{r plots-S7B-1, echo=FALSE}
 
+randomForest.plots[[tmp.subset]][["RandomForest"]][["Top25_Features"]]
 
+# Save as PNG and PDF
+# gt::gtsave(gt_table, filename = file.path(png_dir, "S7X.png"))
+# gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7X.pdf"))
+```
+
+```{r stats-S7B-1, echo=FALSE}
+
+randomForest.stats[["Exposed"]][["RandomForest"]][["Performance"]]
+randomForest.stats[["Exposed"]][["RandomForest"]][["Top25_Features"]]
+randomForest.stats[["Exposed"]][["RandomForest"]][["StabilityAnalysis_Top10"]]
+randomForest.stats[["Exposed"]][["RandomForest"]][["CrossValidation_Summary_10Fold"]]
+randomForest.stats[["Exposed"]][["RandomForest"]][["CrossValidation_Improvement"]]
+
+```
 
 ## Session Info {.tabset}
 
