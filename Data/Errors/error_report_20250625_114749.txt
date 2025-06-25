@@ -1,0 +1,11 @@
+Error in MicrobiomeProcessing_2025-07-01.R
+Step: Main Script Execution
+Time: 2025-06-25 11:47:49.302519
+Error Message: Error in MicrobiomeProcessing_2025-07-01.R
+Step: Statistical Analysis and Plotting
+Time: 2025-06-25 11:47:49.287519
+Error Message: there is no package called ‘here’
+Call: loadNamespace(x)
+
+Call: create_error_report(e, "Statistical Analysis and Plotting")
+

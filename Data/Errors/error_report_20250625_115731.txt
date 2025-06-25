@@ -1,0 +1,11 @@
+Error in MicrobiomeProcessing_2025-07-01.R
+Step: Main Script Execution
+Time: 2025-06-25 11:57:31.480701
+Error Message: Error in MicrobiomeProcessing_2025-07-01.R
+Step: Statistical Analysis and Plotting
+Time: 2025-06-25 11:57:31.468609
+Error Message: object 'improvement' not found
+Call: NULL
+
+Call: create_error_report(e, "Statistical Analysis and Plotting")
+
