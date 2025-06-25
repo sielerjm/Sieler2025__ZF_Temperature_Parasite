@@ -2287,7 +2287,7 @@ beta.plots[[tmp.subset]][[tmp.variables]][["CAP"]][["Plot_SUPP_6B.1_gunifrac"]]
 
 ```
 
-##### Suppl. Tables {.tabset}
+##### Suppl. Tables (by Temp) {.tabset}
 
 ###### (hide)
 
@@ -2323,6 +2323,50 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6B.1"]] %>%
 
 ```
 
+
+
+##### Suppl. Tables (by Tank) {.tabset}
+
+```{r include=FALSE}
+# creates a temporary variable to aid in automating knitted document
+tmp.subset <- "PreExposed"
+tmp.variables <- "TEMP:TANK"
+
+```
+
+###### (hide)
+
+Click on tabs to display tables and figures. Scroll to see additional rows.
+
+```{r empty-6B.1.1_hide}
+
+```
+
+###### ADONIS2
+
+```{r stats-6B.1.1-adonis2, echo=FALSE}
+
+beta.stats[[tmp.subset]][[tmp.variables]][["CAP.ADONIS__SUPP_6B.2.2"]] %>%
+  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
+    gt::tab_options(
+      container.overflow.y = "auto",       # Enable vertical overflow
+      container.height = gt::px(624)           # Set the height to 624 pixels (6.5 inches)
+    )
+
+```
+
+###### Dispersion (ANOVA)
+
+```{r stats-6B.1.1-anova, echo=FALSE}
+
+beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6B.3.2"]] %>%
+  # Set the maximum height to 6.5 inches (6.5 * 96 pixels = 624 pixels)
+    gt::tab_options(
+      container.overflow.y = "auto",       # Enable vertical overflow
+      container.height = gt::px(624)           # Set the height to 624 pixels (6.5 inches)
+    )
+
+```
 
 
 #### S6C
@@ -2411,9 +2455,6 @@ beta.stats[[tmp.subset]][[tmp.variables]][["HoD.Tukey__SUPP_6D.1"]] %>%
 
 
 
-
-
-
 ### Fig. 7) Gut microbial abundance is significantly associated with environmental conditions and stressors
 
 ```{r include=FALSE}
@@ -2487,7 +2528,7 @@ gt_table
 
 Click on tabs to reveal figures displaying additional metrics.
 
-###### S7B.1
+###### S7A.1
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
 tmp.subset <- "All"

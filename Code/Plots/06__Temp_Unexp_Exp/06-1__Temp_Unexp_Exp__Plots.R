@@ -348,7 +348,7 @@ alpha.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["TUKEY"]][["Plot_SUPP"]] <-
     #                            hide.ns = T)   
   }
 
-#### S6C: TEMP:TREAT (Pre-Exp) ---------------------------------------------------------------------
+#### S6B: TEMP:TREAT (Pre-Exp) ---------------------------------------------------------------------
 
 beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP"]] <-
   {
@@ -529,13 +529,13 @@ beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP"]] <-
 
 
 
-##### S6C.1 TREAT by TEMP -------------------------------------------------------------------
+##### S6B.1 TREAT by TEMP -------------------------------------------------------------------
 
 
 ###### Bray -------------------------------------------------------------------
 
 
-beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6C.1_bray"]] <-
+beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6B.1_bray"]] <-
   {
     
     p1 <- tmp.psOBJ %>%
@@ -781,7 +781,7 @@ beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6C.1_bray"]
 ###### Canberra -------------------------------------------------------------------
 
 
-beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6C.1_canberra"]] <-
+beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6B.1_canberra"]] <-
   {
 
     p1 <- tmp.psOBJ %>%
@@ -1027,7 +1027,7 @@ beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6C.1_canber
 ###### Gunifrac -------------------------------------------------------------------
 
 
-beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6C.1_gunifrac"]] <-
+beta.plots[[tmp.resSubSection]][["TEMP:TREAT"]][["CAP"]][["Plot_SUPP_6B.1_gunifrac"]] <-
   {
 
     p1 <- tmp.psOBJ %>%
