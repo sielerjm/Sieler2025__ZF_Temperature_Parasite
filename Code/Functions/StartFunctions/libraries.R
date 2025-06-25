@@ -51,6 +51,9 @@ library(car)  # Allows us to run Anova()
 library(lme4)  # Linear mixed models
 library(emmeans)  # Post-hoc model comparisons
 library(multcomp)  # Multiple comparison tests
+library(caret) # random forest
+library(vip)  # random forest
+library(ranger)  # random forest
 
 
 # KEEP AS LAST LIBRARY TO LOAD --------------------------------------------

@@ -393,7 +393,7 @@ diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]]
 ## SUPP ----------------------------------------
 
 
-### Tables ------------------------------------------------------------------
+### MaAsLin Tables ------------------------------------------------------------------
 
 
 ##### Counts Sig per Variable -------------------------------------------------
@@ -461,6 +461,24 @@ diffAbnd.plots[["All"]][["All__TEMP_DPE_TREAT_PATH_WORM_CLUSTER"]][["Maaslin2"]]
       columns = everything(),
       decimals = 0
     )
+
+
+
+### Random Forest Plots ----------------------------------------------------
+
+# Create variable importance plot
+
+randomForest.plots[["Exposed"]][["RandomForest"]][["Top25_Features"]] <- 
+  vip::vip(rf_model, 
+           num_features = 25,  # Show top 25 most important variables
+           geom = "point",
+           aesthetics = list(color = "steelblue", size = 3)) +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(title = "Top 25 Variable Importance for Worm Burden Prediction\n(Using MaAsLin2 Significant Taxa)",
+                x = "Variable",
+                y = "Importance (% Increase in MSE)") +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+
 
 
 # Add end message with timestamp and duration

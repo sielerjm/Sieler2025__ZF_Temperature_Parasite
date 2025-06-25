@@ -1,4 +1,3 @@
-
 # 02__Temp_Unexposed__Plots -----------------------------------------------------
 
 cat("02__Temp_Unexposed__Plots \n")
@@ -810,7 +809,8 @@ alpha.plots[[tmp.resSubSection]][["TEMP:DPE"]][["TUKEY"]][["Plot_SUPP"]] <-
                                  hide.ns = T)   
   }
 
-### S2D: TEMP --------------------------------------------------------------------
+
+### S2D: TEMP:DPE --------------------------------------------------------------------
 
 beta.plots[[tmp.resSubSection]][["TEMP:DPE"]][["CAP"]][["Plot_SUPP"]] <-
   {
@@ -952,6 +952,276 @@ beta.plots[[tmp.resSubSection]][["TEMP:DPE"]][["CAP"]][["Plot_SUPP"]] <-
     
     # Combine plots
     cowplot::plot_grid(tmp.plot.canberra, tmp.plot.unifrac, ncol = 2)
+  }
+
+### S2D: TEMP:DPE (TIME) --------------------------------------------------------------------
+
+
+beta.plots[[tmp.resSubSection]][["TEMP:DPE__TIME"]][["CAP"]][["Plot_SUPP"]] <-
+  {
+    
+    # Bray
+    tmp.plot.bray <-
+      tmp.psOBJ %>%
+      # ps_filter(Temperature == temp) %>%
+      # ps_filter(DPE == 0) %>%
+      microViz::ps_mutate(Cluster = if_else(
+        Treatment == "Exposed" & Total.Worm.Count > 0,
+        case_when(
+          Simpson__Genus_norm %in% head(sort(Simpson__Genus_norm), 16) ~ "Low",
+          Simpson__Genus_norm %in% tail(sort(Simpson__Genus_norm), 16) ~ "High",
+          TRUE ~ "Other"
+        ),
+        "Other"
+      )) %>%
+      # ungroup()  %>%
+      microViz::ps_mutate(Cluster = fct_relevel(factor(Cluster, levels = c("Other", "Low", "High")))) %>%
+      # samdat_tbl()
+      microViz::ps_mutate(
+        DPE_labels = factor(
+          DPE,                          # or use your existing DPE_labels column
+          levels = c(0, 14, 21, 28, 42),   # order you want in the legend
+          labels = c("0", "14", "21", "28", "42")
+        )) %>%      
+      microViz::tax_agg("Genus") %>%
+      microViz::dist_calc("bray") %>%
+      microViz::dist_permanova(
+        seed = 1,
+        variables = c("Temperature", "DPE", "Temp.DPE"),
+        n_processes = 8,
+        n_perms = 999 # only 99 perms used in examples for speed (use 9999+!)
+      ) %>% 
+      microViz::ord_calc(constraints = c("Temperature.", "DPE", "Temp.DPE."),
+                         method = "CAP") %>%
+      # ord_plot(color = "Temperature", #shape = "Treatment",
+      #          fill = "Temperature", #ifelse("Treatment" == "Control", "Temperature", "white"),
+      #          size = 3) +
+      microViz::ord_plot(
+        axes = c(1, 2),
+        fill = "DPE_labels",
+        color = "white",
+        size = 3,
+        stroke = 1,
+        shape = 21,
+        constraint_vec_style = vec_constraint(colour = "black",
+                                              size = 2,
+                                              alpha = 1,
+                                              arrow = grid::arrow(length = grid::unit(0.05, units = "npc"))),
+        constraint_lab_style = constraint_lab_style(
+          type = "label",
+          justify = "side",
+          colour = "black",
+          # max_angle = 90, 
+          # perpendicular = TRUE, 
+          size = 3.5,
+          check_overlap = TRUE
+        ), 
+        auto_caption = NA
+      ) +
+      scale_fill_viridis_d(name = "Days Post Exposure (DPE)", 
+                           option = "viridis", 
+                           labels = c("0", "14", "21", "28", "42")) +  
+      
+      ggnewscale::new_scale_fill() +
+      ggnewscale::new_scale_color() +
+      
+      stat_ellipse(aes(color = Temperature, 
+                       fill = Temperature),
+                   alpha = .5,
+                   geom = "polygon"
+      ) +
+      
+      # facet_grid(.~Temperature, labeller = labeller(Temperature = c("28" = "28°C", "32" = "32°C", "35" = "35°C"))) +
+      
+      scale_shape_manual(values = c(16, 23)) +
+      scale_color_manual(values = col.Temp, labels = c("28°C", "32°C", "35°C")) +
+      scale_fill_manual(values = c(col.Temp, "white"), labels = c("28°C", "32°C", "35°C"))  +
+      
+      labs(caption = "bray-curtis") +
+      
+      
+      
+      theme(legend.position = "bottom",
+            legend.direction = "vertical",
+            strip.text = element_text(size = 14))
+    
+    tmp.plot.bray <- 
+      rearrange_layers(tmp.plot.bray)
+    
+    
+    
+    # Canberra
+    tmp.plot.canberra <-
+      tmp.psOBJ %>%
+      microViz::ps_mutate(
+        DPE_labels = factor(
+          DPE,                          # or use your existing DPE_labels column
+          levels = c(0, 14, 21, 28, 42),   # order you want in the legend
+          labels = c("0", "14", "21", "28", "42")
+        )) %>%            
+      microViz::tax_agg("Genus") %>%
+      microViz::dist_calc("canberra") %>%
+      microViz::dist_permanova(
+        seed = 1,
+        variables = c("Temperature", "DPE", "Temp.DPE"),
+        n_processes = 8,
+        n_perms = 999 # only 99 perms used in examples for speed (use 9999+!)
+      ) %>% 
+      microViz::ord_calc(method = "CAP", constraints = c("Temperature.", "DPE", "Temp.DPE.")) %>%
+      # ord_plot(color = "Temperature", #shape = "Treatment",
+      #          fill = "Temperature", #ifelse("Treatment" == "Control", "Temperature", "white"),
+      #          size = 3) +
+      microViz::ord_plot(
+        fill = "DPE_labels",
+        color = "white",
+        size = 3,
+        stroke = 1,
+        shape = 21,
+        constraint_vec_style = vec_constraint(colour = "black",
+                                              size = 2,
+                                              alpha = 1,
+                                              arrow = grid::arrow(length = grid::unit(0.05, units = "npc"))),
+        constraint_lab_style = constraint_lab_style(
+          type = "label",
+          justify = "side",
+          colour = "black",
+          # max_angle = 90, 
+          # perpendicular = TRUE, 
+          size = 3.5,
+          check_overlap = TRUE
+        ), 
+        auto_caption = NA
+      ) +
+      
+      scale_fill_viridis_d(name = "Days Post Exposure (DPE)", 
+                           option = "viridis", 
+                           labels = c("0", "14", "21", "28", "42")) + 
+      
+      ggnewscale::new_scale_fill() +
+      ggnewscale::new_scale_color() +
+      
+      scale_shape_manual(values = c(16, 23)) +
+      scale_color_manual(values = col.Temp, labels = c("28°C", "32°C", "35°C")) +
+      scale_fill_manual(values = c(col.Temp, "white"), labels = c("28°C", "32°C", "35°C"))  +
+      
+      # Add viridis gradient for DPE fill
+      ggnewscale::new_scale_fill() +
+      scale_fill_viridis_c(name = "Days post exposure", option = "viridis") +
+      
+      ggnewscale::new_scale_color() +
+      ggnewscale::new_scale_fill() +
+      
+      stat_ellipse(aes(color = Temperature, 
+                       fill = Temperature),
+                   size = .75,
+                   alpha = .5,
+                   geom = "polygon"
+      ) +
+      
+      # facet_grid(.~Temperature, labeller = labeller(Temperature = c("28" = "28°C", "32" = "32°C", "35" = "35°C"))) +
+      
+      
+      scale_color_manual(values = col.Temp, labels = c("28°C", "32°C", "35°C")) +
+      scale_fill_manual(values = c(col.Temp, "white"), labels = c("28°C", "32°C", "35°C"))  +
+      
+      # scale_x_continuous(limits = c(-2,1.5)) +
+      labs(caption = "canberra") +
+      
+      theme(legend.position = "bottom",
+            legend.direction = "vertical",
+            strip.text = element_text(size = 14))
+    
+    # Reshuffle layers so ellipse is in background
+    tmp.plot.canberra <- 
+      rearrange_layers(tmp.plot.canberra)
+    
+    # Unifrac
+    tmp.plot.unifrac <-
+      tmp.psOBJ %>%
+      # tax_agg("Genus") %>%
+      microViz::ps_mutate(
+        DPE_labels = factor(
+          DPE,                          # or use your existing DPE_labels column
+          levels = c(0, 14, 21, 28, 42),   # order you want in the legend
+          labels = c("0", "14", "21", "28", "42")
+        )) %>%        
+      microViz::dist_calc("gunifrac") %>%
+      microViz::dist_permanova(
+        seed = 1,
+        variables = c("Temperature", "DPE", "Temp.DPE"),
+        n_processes = 8,
+        n_perms = 999 # only 99 perms used in examples for speed (use 9999+!)
+      ) %>% 
+      microViz::ord_calc(method = "CAP", constraints = c("Temperature.", "DPE", "Temp.DPE.")) %>%
+      # ord_plot(color = "Temperature", #shape = "Treatment",
+      #          fill = "Temperature", #ifelse("Treatment" == "Control", "Temperature", "white"),
+      #          size = 3) +
+      microViz::ord_plot(
+        fill = "DPE_labels",
+        color = "white",
+        size = 3,
+        stroke = 1,
+        shape = 21,
+        constraint_vec_style = vec_constraint(colour = "black",
+                                              size = 2,
+                                              alpha = 1,
+                                              arrow = grid::arrow(length = grid::unit(0.05, units = "npc"))),
+        constraint_lab_style = constraint_lab_style(
+          type = "label",
+          justify = "side",
+          colour = "black",
+          # max_angle = 90, 
+          # perpendicular = TRUE, 
+          size = 3.5,
+          check_overlap = TRUE
+        ), 
+        auto_caption = NA
+      ) +
+      
+      scale_fill_viridis_d(name = "Days Post Exposure (DPE)", 
+                           option = "viridis", 
+                           labels = c("0", "14", "21", "28", "42")) +  
+      
+      ggnewscale::new_scale_fill() +
+      ggnewscale::new_scale_color() +
+      
+      scale_shape_manual(values = c(16, 23)) +
+      scale_color_manual(values = col.Temp, labels = c("28°C", "32°C", "35°C")) +
+      scale_fill_manual(values = c(col.Temp, "white"), labels = c("28°C", "32°C", "35°C"))  +
+      
+      # Add viridis gradient for DPE fill
+      ggnewscale::new_scale_fill() +
+      scale_fill_viridis_c(name = "Days post exposure", option = "viridis") +
+      
+      ggnewscale::new_scale_color() +
+      ggnewscale::new_scale_fill() +
+      
+      stat_ellipse(aes(color = Temperature, 
+                       fill = Temperature),
+                   size = .75,
+                   alpha = .5,
+                   geom = "polygon"
+      ) +
+      
+      # facet_grid(.~Temperature, labeller = labeller(Temperature = c("28" = "28°C", "32" = "32°C", "35" = "35°C"))) +
+      
+      
+      scale_color_manual(values = col.Temp, labels = c("28°C", "32°C", "35°C")) +
+      scale_fill_manual(values = c(col.Temp, "white"), labels = c("28°C", "32°C", "35°C"))  +
+      
+      # scale_x_continuous(limits = c(-6,8)) +
+      labs(caption = "gunifrac") +
+      
+      theme(legend.position = "bottom",
+            legend.direction = "vertical",
+            strip.text = element_text(size = 14))
+    
+    # Reshuffle layers so ellipse is in background
+    tmp.plot.unifrac <- 
+      rearrange_layers(tmp.plot.unifrac)
+    
+    # Combine plots
+    cowplot::plot_grid(tmp.plot.bray, tmp.plot.canberra, tmp.plot.unifrac, ncol = 3)
   }
 
 

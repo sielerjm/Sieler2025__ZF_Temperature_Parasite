@@ -245,7 +245,7 @@ alpha.stats[[tmp.resSubSection]][["TEMP:DPE"]][["ANOVA.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "ANOVA of GLM",
-    subtitle = "ANOVA(GLM(Alpha.Score ~ Temperature*Time), type = 2); Exposed fish"
+    subtitle = "ANOVA(GLM(Alpha.Score ~ Temperature*DPE), type = 2); Exposed fish"
   )
 
 
@@ -279,7 +279,7 @@ alpha.stats[[tmp.resSubSection]][["TEMP:DPE"]][["Tukey.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "Pairwise Tukey's HSD, p.adj: Dunnett",
-    subtitle = "Tukey(Alpha.Score ~ Temperature*Time); Exposed fish"
+    subtitle = "Tukey(Alpha.Score ~ Temperature*DPE); Exposed fish"
   )
 
 ### Beta --------------------------------------------------------------------

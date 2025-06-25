@@ -245,7 +245,7 @@ alpha.stats[[tmp.resSubSection]][["TEMP:DPE"]][["ANOVA.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "ANOVA of GLM",
-    subtitle = "ANOVA(GLM(Alpha.Score ~ Temperature*Time), type = 2); Unexposed fish"
+    subtitle = "ANOVA(GLM(Alpha.Score ~ Temperature*DPE), type = 2); Unexposed fish"
   )
 
 
@@ -279,7 +279,7 @@ alpha.stats[[tmp.resSubSection]][["TEMP:DPE"]][["Tukey.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "Pairwise Tukey's HSD, p.adj: Dunnett",
-    subtitle = "Tukey(Alpha.Score ~ Temperature*Time); Unexposed fish"
+    subtitle = "Tukey(Alpha.Score ~ Temperature*DPE); Unexposed fish"
   )
 
 ### Beta --------------------------------------------------------------------
@@ -340,7 +340,7 @@ beta.stats[[tmp.resSubSection]][["TEMP:DPE"]][["HoD.ANOVA.Table"]] <-
   # Title/caption
   gt::tab_header(
     title = "ANOVA: Homogeneity of Dispersion",
-    subtitle = "ANOVA(Beta Disperson ~ Temperature); Unexposed fish"
+    subtitle = "ANOVA(Beta Disperson ~ Temperature*DPE); Unexposed fish"
   )
 
 ##### Tukey ------------------------------------------------------------------
@@ -363,6 +363,10 @@ beta.stats[[tmp.resSubSection]][["TEMP:DPE"]][["HoD.Tukey.Table"]] <-
     title = "Tukey: Homogeneity of Dispersion",
     subtitle = "Tukey(Beta Disperson ~ Temperature*DPE); Unexposed fish"
   )
+
+
+
+
 
 # Add end message with timestamp and duration
 end_time <- Sys.time()

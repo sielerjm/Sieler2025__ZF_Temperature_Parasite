@@ -253,6 +253,67 @@ beta.stats[[tmp.resSubSection]][["TEMP:TREAT"]][["HoD.Tukey__SUPP_6B.1"]] <- {
 }
 
 
+### 6B.1.1 Tank Level Analysis ------------------------------------------------------
+
+beta.stats[[tmp.resSubSection]][["TEMP:TANK"]][["CAP.ADONIS__SUPP_6B.2.2"]] <- {
+  
+  # List of temperatures and metrics
+  Temperature <- c(28, 32, 35)
+  metrics <- c("bray", "canberra", "gunifrac")
+  
+  # Apply the function to each temperature and metric, saving results in a list of dataframes
+  results <- map(Temperature, function(temp) {
+    map(metrics, ~ process_permanova(ps_obj = tmp.psOBJ, 
+                                     var = "Temperature", 
+                                     var_filt = temp, 
+                                     var_test = "Tank.ID", 
+                                     metric = .x))
+  })
+  
+  # The result is a list of lists, where each sublist contains the results for a specific temperature
+  names(results) <- Temperature
+  
+  # Optional: Flatten the list to a single level if you prefer, with temperature and metric names
+  flat_results.permanova <- set_names(flatten(results), 
+                                      paste0(rep(Temperature, each = length(metrics)), "_", metrics))
+  
+  flat_results.permanova %>% 
+    bind_rows() %>%
+    mutate(Temperature = as.character(Temperature)) %>%
+    SigStars() %>% 
+    set_GT(var = "Metric", group.by = "Metric")
+}
+
+beta.stats[[tmp.resSubSection]][["TEMP:TANK"]][["HoD.Tukey__SUPP_6B.3.2"]] <- {
+  
+  
+  # List of temperatures and metrics
+  Temperature <- c(28, 32, 35)
+  metrics <- c("bray", "canberra", "gunifrac")
+  
+  # Apply the function to each temperature and metric, saving results in a list of dataframes
+  results <- map(Temperature, function(temp) {
+    map(metrics, ~ process_bdisp(ps_obj = tmp.psOBJ, 
+                                 var = "Temperature", 
+                                 var_filt = temp, 
+                                 var_test = "Tank.ID", 
+                                 metric = .x))
+  })
+  
+  # The result is a list of lists, where each sublist contains the results for a specific temperature
+  names(results) <- Temperature
+  
+  # Optional: Flatten the list to a single level if you prefer, with temperature and metric names
+  flat_results.bdisp <- set_names(flatten(results), 
+                                  paste0(rep(Temperature, each = length(metrics)), "_", metrics))
+  
+  flat_results.bdisp  %>% 
+    bind_rows() %>%
+    mutate(Temperature = as.character(Temperature)) %>%
+    SigStars() %>% 
+    set_GT(var = "Metric", group.by = "Metric")
+  
+}
 
 # Replace end message
 end_time <- Sys.time()
