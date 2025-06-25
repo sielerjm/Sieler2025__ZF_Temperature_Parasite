@@ -55,7 +55,7 @@ This will run all analyses post-DADA2 processing (may take several minutes).
 
 ```{r run_full_analysis, eval=FALSE}
 # Run complete analysis pipeline
-source(file.path(proj.path, "MicrobiomeProcessing_2024-08-12.R"))
+source(file.path(proj.path, "MicrobiomeProcessing_2025-07-01.R"))
 ```
 
 ### Option 2: Load Pre-computed Results
