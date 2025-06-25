@@ -230,69 +230,136 @@ diffAbnd.stats[["All"]][["35__TREAT_PATH_WORM"]][["Maaslin2"]][["output"]] <-
 
 ## 28 vs 32 Comparison -----------------------------------------------------
 
+# ── file paths ───────────────────────────────────────────────────────────────
+pth_28 <- file.path(
+  path.results,
+  "Tables/MaAsLin2/28__TREAT_PATH_WORM/28__significant_results.tsv"
+)
 
-### ── paths ────────────────────────────────────────────────────────────────────
-pth_28 <- file.path(path.results, "Tables/MaAsLin2/28__TREAT_PATH_WORM/28__significant_results.tsv") 
-#"/Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/28__TREAT_PATH_WORM/28__significant_results.tsv"
+pth_32 <- file.path(
+  path.results,
+  "Tables/MaAsLin2/32__TREAT_PATH_WORM/32__significant_results.tsv"
+)
 
-
-pth_32 <- file.path(path.results, "Tables/MaAsLin2/32__TREAT_PATH_WORM/32__significant_results.tsv") 
-#"/Users/michaelsieler/Dropbox/Mac (2)/Documents/Sharpton_Lab/Projects_Repository/Rules_of_Life/Sieler2024__ZF_Temperature_Parasite/Results/Tables/MaAsLin2/32__TREAT_PATH_WORM/32__significant_results.tsv"
-
-### ── helper to read & label one sheet ─────────────────────────────────────────
-read_maaslin <- function(path, temp_label){
+# ── helper 1: read & clean one MaAsLin2 sheet ────────────────────────────────
+read_maaslin <- function(path, temp_label) {
   readr::read_tsv(path, show_col_types = FALSE) |>
-    dplyr::filter(qval < 0.05) |>              # keep only significant taxa
-    dplyr::select(feature, coef) |>            # 'feature' = taxon name
+    dplyr::filter(qval < 0.05) |>                  # keep FDR-significant hits
     dplyr::mutate(
-      direction = ifelse(coef > 0, "↑", "↓"),
-      temp_group = temp_label
-    )
+      temp_group = temp_label,
+      direction  = ifelse(coef > 0, "↑", "↓")
+    ) |>
+    dplyr::distinct(feature, metadata, .keep_all = TRUE) |>
+    dplyr::select(temp_group, metadata, feature, direction, coef, qval)
 }
 
 df_28 <- read_maaslin(pth_28, "28 °C")
 df_32 <- read_maaslin(pth_32, "32 °C")
 
-### ── compare taxa between temperatures ────────────────────────────────────────
-comparison_tbl <- dplyr::full_join(
-  df_28 |> dplyr::select(feature, dir28 = direction),
-  df_32 |> dplyr::select(feature, dir32 = direction),
-  by = "feature"
-) |>
-  dplyr::mutate(
-    category = dplyr::case_when(
-      !is.na(dir28) & !is.na(dir32) & dir28 == dir32 ~ "Shared, same direction",
-      !is.na(dir28) & !is.na(dir32) & dir28 != dir32 ~ "Shared, opposite direction",
-      !is.na(dir28) &  is.na(dir32)                 ~ "Unique to 28 °C",
-      is.na(dir28)  & !is.na(dir32)                 ~ "Unique to 32 °C"
+# ── helper 2: comparison counts ──────────────────────────────────────────────
+compare_temps <- function(df28, df32, metadata_var) {
+  d28 <- df28 |> dplyr::filter(metadata == metadata_var)
+  d32 <- df32 |> dplyr::filter(metadata == metadata_var)
+  
+  total_28 <- dplyr::n_distinct(d28$feature)
+  total_32 <- dplyr::n_distinct(d32$feature)
+  
+  shared <- dplyr::inner_join(
+    d28, d32, by = "feature", suffix = c(".28", ".32")
+  )
+  
+  dplyr::tibble(
+    category = c(
+      "Total significant (28 °C)",
+      "Total significant (32 °C)",
+      "Shared, same direction",
+      "Shared, opposite direction",
+      "Unique to 28 °C",
+      "Unique to 32 °C"
+    ),
+    n_taxa = c(
+      total_28,
+      total_32,
+      sum(shared$direction.28 == shared$direction.32),
+      sum(shared$direction.28 != shared$direction.32),
+      total_28 - nrow(shared),
+      total_32 - nrow(shared)
     )
   )
+}
 
-### ── summary counts for quick inspection ─────────────────────────────────────
-summary_tbl <- comparison_tbl |>
-  dplyr::count(category, name = "n_taxa") |>
-  dplyr::arrange(match(category,
-                       c("Shared, same direction",
-                         "Shared, opposite direction",
-                         "Unique to 28 °C",
-                         "Unique to 32 °C")))
+# ── comparison gt tables ────────────────────────────────────────────────────
+# tbl_cmp_treatment <- compare_temps(df_28, df_32, "Treatment") |>
+#   gt::gt() |>
+#   gt::tab_header(
+#     title    = md("Burden-Associated Genera: 28 °C vs 32 °C"),
+#     subtitle = md("**Metadata:** Treatment  |  *FDR < 0.05*")
+#   )
 
-### ── pretty table ─────────────────────────────────────────────────────────────
+diffAbnd.stats[["All"]][["28_vs_32__TREAT_PATH_WORM"]][["Maaslin2"]][["Comparison__28_v_32"]] <- 
+  compare_temps(df_28, df_32, "Total.Worm.Count") |>
+  gt::gt() |>
+  gt::tab_header(
+    title    = md("Burden-Associated Genera: 28 °C vs 32 °C"),
+    subtitle = md("**Metadata:** Total Worm Count  |  *FDR < 0.05*")
+  )
 
-#### Table
-
-diffAbnd.stats[["All"]][["28_vs_32__TREAT_PATH_WORM"]][["Maaslin2"]][["output"]] <- 
-  gt::gt(summary_tbl) |>
-    gt::tab_header(
-      title = "Overlap of FDR-Significant Genera (28 °C vs 32 °C)",
-      subtitle = "Direction refers to sign of MaAsLin2 coefficient"
+# ── helper 3: top-N taxa with q-value display ───────────────────────────────
+topN_taxa <- function(df28, df32, metadata_var, n_top = 10) {
+  
+  pooled <- dplyr::bind_rows(df28, df32) |>
+    dplyr::filter(metadata == metadata_var)
+  
+  pooled_unique <- pooled |>
+    dplyr::group_by(feature) |>
+    dplyr::slice_min(qval, with_ties = FALSE) |>
+    dplyr::ungroup()
+  
+  pooled_unique |>
+    dplyr::arrange(qval) |>
+    dplyr::slice_head(n = n_top) |>
+    dplyr::transmute(
+      Rank        = dplyr::row_number(),
+      Genus       = feature,
+      Temperature = temp_group,
+      Direction   = direction,
+      Coef        = coef,
+      qval        = qval
     )
+}
 
-# Add end message
-end_time <- Sys.time()
-duration <- difftime(end_time, start_time, units = "secs")
-cat("Completed 07__TaxonAbund_Unexp_Exp__Stats.R at", format(end_time, "%Y-%m-%d %H:%M:%S"), "\n")
-cat("Total execution time:", round(duration, 2), "seconds\n")
+fmt_qval <- function(gt_tbl) {
+  gt_tbl |>
+    # First: numeric formatting to 3 decimals
+    gt::fmt_number(columns = qval, decimals = 3) |>
+    # Second: override rows where qval < 0.001 with "<0.001"
+    gt::fmt(
+      columns = qval,
+      rows    = qval < 0.001,
+      fns     = function(x) rep("<0.001", length(x))
+    )
+}
+
+# ── top-10 gt tables with custom q-value formatting ─────────────────────────
+# tbl_top10_treatment <- topN_taxa(df_28, df_32, "Treatment") |>
+#   gt::gt() |>
+#   fmt_qval() |>
+#   gt::fmt_number(columns = Coef, decimals = 3) |>
+#   gt::tab_header(
+#     title    = md("Top 10 Genera — Treatment"),
+#     subtitle = md("*Smallest *q*; 28 °C + 32 °C*")
+#   )
+
+diffAbnd.stats[["All"]][["28_vs_32__TREAT_PATH_WORM"]][["Maaslin2"]][["Top10__28_v_32"]] <- 
+  topN_taxa(df_28, df_32, "Total.Worm.Count") |>
+  gt::gt() |>
+  fmt_qval() |>
+  gt::fmt_number(columns = Coef, decimals = 3) |>
+  gt::tab_header(
+    title    = md("Top 10 Genera — Total Worm Count"),
+    subtitle = md("*Smallest *q*; 28 °C + 32 °C*")
+  )
+
 
 
 ## Random Forest -----------------------------------------------------------

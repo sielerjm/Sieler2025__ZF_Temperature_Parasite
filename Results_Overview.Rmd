@@ -2549,6 +2549,17 @@ gt_table
 # gt::gtsave(gt_table, filename = file.path(png_dir, "S7X.png"))
 # gt::gtsave(gt_table, filename = file.path(pdf_dir, "S7X.pdf"))
 ```
+
+```{r plots-S7A-2-1}
+
+diffAbnd.stats[["All"]][["28_vs_32__TREAT_PATH_WORM"]][["Maaslin2"]][["Comparison__28_v_32"]]
+diffAbnd.stats[["All"]][["28_vs_32__TREAT_PATH_WORM"]][["Maaslin2"]][["Top10__28_v_32"]]
+
+```
+
+
+
+
 ###### S7B.1
 ```{r include=FALSE}
 # creates a temporary variable to aid in automating knitted document
