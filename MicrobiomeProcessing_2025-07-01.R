@@ -17,7 +17,7 @@ create_error_report <- function(error, step) {
   
   # Create detailed error message
   error_msg <- paste0(
-    "Error in MicrobiomeProcessing_2024-08-12.R\n",
+    "Error in MicrobiomeProcessing_2025-07-01.R\n",
     "Step: ", step, "\n",
     "Time: ", Sys.time(), "\n",
     "Error Message: ", error$message, "\n",
@@ -38,7 +38,7 @@ create_error_report <- function(error, step) {
 tryCatch({
   # Start timing and logging
   start_time <- Sys.time()
-  cat("Starting MicrobiomeProcessing_2024-08-12.R at ", 
+  cat("Starting MicrobiomeProcessing_2025-07-01.R at ", 
       format(start_time, "%Y-%m-%d %H:%M:%S"), "\n")
   
   ## Initialize Environment ------------------------------------------------
@@ -65,6 +65,8 @@ tryCatch({
   diffAbnd.plots <- list()
   worm.stats <- list()
   worm.plots <- list()
+  randomForest.stats <- list()
+  randomForest.plots <- list()
   
   ## Data Import and Processing --------------------------------------------
   
@@ -137,6 +139,7 @@ tryCatch({
     saveRDS(beta.stats, file.path(path.results, "Stats_Plots", "beta_stats.rds"))
     saveRDS(worm.stats, file.path(path.results, "Stats_Plots", "worm_stats.rds"))
     saveRDS(diffAbnd.stats, file.path(path.results, "Stats_Plots", "diffAbnd_stats.rds"))
+    saveRDS(randomForest.stats, file.path(path.results, "Stats_Plots", "randomForest_stats.rds"))
     
     # Save plot objects
     cat(" - Saving Plot Objects\n")
@@ -144,6 +147,7 @@ tryCatch({
     saveRDS(beta.plots, file.path(path.results, "Stats_Plots", "beta_plots.rds"))
     saveRDS(worm.plots, file.path(path.results, "Stats_Plots", "worm_plots.rds"))
     saveRDS(diffAbnd.plots, file.path(path.results, "Stats_Plots", "diffAbnd_plots.rds"))
+    saveRDS(randomForest.plots, file.path(path.results, "Stats_Plots", "randomForest_plots.rds"))
     
     # Save environment
     cat(" - Saving Environment\n")
@@ -156,7 +160,7 @@ tryCatch({
   
   end_time <- Sys.time()
   duration <- difftime(end_time, start_time, units = "secs")
-  cat("Completed MicrobiomeProcessing_2024-08-12.R at ", 
+  cat("Completed MicrobiomeProcessing_2025-07-01.R at ", 
       format(end_time, "%Y-%m-%d %H:%M:%S"), "\n")
   cat("Total execution time: ", round(duration, 2), " seconds\n")
   
